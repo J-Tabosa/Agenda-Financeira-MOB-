@@ -25,7 +25,7 @@
       <section class="hero-balance"><span>Saldo atual após gastos realizados</span><strong id="netBalance">R$ 0,00</strong><small>Valores futuros não reduzem este saldo antes da data programada.</small></section>
       <section class="overview-grid">
         <article class="mini-card"><span>Saldo bruto</span><strong id="grossBalance">R$ 0,00</strong><small>Saldo-base + entradas realmente registradas</small></article>
-        <article class="mini-card"><span>Reservado</span><strong id="reservedTotal">R$ 0,00</strong><small>Separado da projeção de uso</small></article>
+        <article class="mini-card"><span>Reservado</span><strong id="reservedTotal">R$ 0,00</strong><small>Valor que você já tem guardado</small></article>
       </section>
       <section class="section-block"><div class="section-title"><div><p class="eyebrow">FATURAS</p><h2>Seus cartões</h2></div><small>Atual x previsto</small></div><div id="homeBills" class="bill-bubbles"></div></section>
       <section class="panel finance-panel">
@@ -40,7 +40,7 @@
 
     <section class="page" data-page="add">
       <div class="page-heading"><div><p class="eyebrow">LANÇAMENTO</p><h2>Adicionar movimento</h2></div></div>
-      <section class="panel"><form id="transactionForm" class="form-grid">
+      <section class="panel"><div id="movementEditBanner" class="edit-banner" hidden><div><strong>Editando gasto</strong><small>Altere os dados abaixo e salve.</small></div><button id="cancelMovementEdit" class="ghost compact" type="button">Cancelar</button></div><form id="transactionForm" class="form-grid">
         <label>Tipo<select id="type" required><option value="expense">Gasto</option><option value="income">Entrada recebida</option></select></label>
         <label>Valor<input id="amount" type="number" inputmode="decimal" min="0.01" step="0.01" placeholder="42,00" required /></label>
         <label>Categoria<select id="category" required></select></label>
@@ -49,7 +49,7 @@
         <label id="recurrenceLabel" class="toggle-label"><span>Repetir todo mês</span><input id="movementRecurring" type="checkbox" /></label>
         <label class="full">Descrição<input id="description" type="text" maxlength="80" placeholder="Ex.: assinatura, jantar, transporte..." /></label>
         <div id="movementHint" class="form-hint full">Se a data estiver no futuro, o gasto fica apenas como previsto até chegar o dia da cobrança.</div>
-        <button class="primary full" type="submit">Salvar movimento</button>
+        <button id="movementSubmitBtn" class="primary full" type="submit">Salvar movimento</button>
       </form></section>
       <section class="section-block"><div class="section-title"><div><p class="eyebrow">ATALHOS</p><h2>Registro rápido</h2></div></div><div class="quick-grid">
         <button class="quick" data-quick="30" data-category="iFood" type="button"><span class="brand-shell"><img src="https://www.ifood.com.br/favicon.ico" alt="iFood"></span><strong>R$ 30</strong></button>
@@ -71,7 +71,7 @@
 
     <section class="page" data-page="settings">
       <div class="page-heading"><div><p class="eyebrow">CONFIGURAÇÕES</p><h2>Ajustes</h2></div></div>
-      <section class="panel"><div class="section-title"><div><p class="eyebrow">BASE</p><h2>Saldo e reserva</h2></div></div><form id="baseForm" class="form-grid top-gap"><label>Saldo-base <input id="setCash" type="number" step="0.01" value="0" /></label><label>Valor reservado <input id="setReserved" type="number" step="0.01" value="0" /></label><button class="secondary full" type="submit">Salvar base</button></form></section>
+      <section class="panel"><div class="section-title"><div><p class="eyebrow">BASE</p><h2>Saldo e reserva</h2></div></div><form id="baseForm" class="form-grid top-gap"><label>Saldo-base <input id="setCash" type="number" step="0.01" value="0" /></label><label>Valor já reservado <input id="setReserved" type="number" step="0.01" value="0" /></label><button class="secondary full" type="submit">Salvar base</button></form></section>
       <section class="panel"><div class="section-title"><div><p class="eyebrow">ENTRADAS</p><h2>Salários e recursos</h2></div><button id="addIncomeBtn" class="icon-button" type="button" aria-label="Adicionar entrada"><span class="material-symbols-outlined">add</span></button></div><div id="incomeList" class="settings-list"></div></section>
       <section class="panel"><div class="section-title"><div><p class="eyebrow">FATURAS</p><h2>Cartões e cobranças</h2></div><button id="addBillBtn" class="icon-button" type="button" aria-label="Adicionar fatura"><span class="material-symbols-outlined">add</span></button></div><div id="billList" class="settings-list"></div></section>
       <section class="panel"><div class="section-title"><div><p class="eyebrow">PROGRAMADOS</p><h2>Gastos futuros e recorrentes</h2></div></div><div id="scheduleList" class="settings-list"></div></section>
@@ -101,5 +101,6 @@
   </form></section></div>
 
   <script src="app.js" defer></script>
+  <script src="refine-v6.js" defer></script>
 </body>
 </html>
