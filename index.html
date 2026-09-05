@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#101318" />
+  <meta name="description" content="Controle financeiro pessoal simples, local e instalável." />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="styles.css" />
+  <title>Agenda Financeira</title>
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">CONTROLE PESSOAL</p>
+      <h1>Agenda Financeira</h1>
+    </div>
+    <button id="installBtn" class="ghost" hidden>Instalar</button>
+  </header>
+
+  <main class="container">
+    <section class="hero card">
+      <div>
+        <span class="label">Disponível após SENAI, meta e Renner</span>
+        <strong id="freeAfterSenai" class="money-xl">R$ 0,00</strong>
+        <small id="freeRange">Faixa projetada</small>
+      </div>
+      <div id="statusPill" class="status-pill">Calculando...</div>
+    </section>
+
+    <section class="grid-2 summary-grid">
+      <article class="card stat"><span class="label">Saldo atual</span><strong id="cashBalance">R$ 0,00</strong></article>
+      <article class="card stat"><span class="label">Meta de reserva</span><strong id="savingsGoal">R$ 0,00</strong></article>
+      <article class="card stat"><span class="label">Renner · 30/09</span><strong id="rennerBalance">R$ 0,00</strong></article>
+      <article class="card stat"><span class="label">BB projetado · 05/10</span><strong id="bbProjected">R$ 0,00</strong></article>
+    </section>
+
+    <section class="card">
+      <div class="section-head"><div><p class="eyebrow">REGISTRO RÁPIDO</p><h2>Novo movimento</h2></div></div>
+      <form id="transactionForm" class="form-grid">
+        <label>Tipo<select id="type" required><option value="expense">Gasto</option><option value="income">Entrada</option></select></label>
+        <label>Valor<input id="amount" type="number" inputmode="decimal" min="0.01" step="0.01" placeholder="42,00" required /></label>
+        <label>Categoria<select id="category" required><option>iFood</option><option>Cinema</option><option>Comida fora</option><option>Transporte</option><option>Assinaturas</option><option>Academia</option><option>Cuidados pessoais</option><option>Compras</option><option>Salário</option><option>SENAI</option><option>Outros</option></select></label>
+        <label>Forma / conta<select id="account" required><option value="cash">Débito / dinheiro</option><option value="bb">Crédito BB</option><option value="renner">Crédito Renner</option></select></label>
+        <label class="full">Descrição<input id="description" type="text" maxlength="80" placeholder="Ex.: hambúrguer no iFood" /></label>
+        <button class="primary full" type="submit">Salvar movimento</button>
+      </form>
+      <div class="quick-row" aria-label="Atalhos de gasto"><button class="quick" data-quick="30" data-category="iFood">🍔 iFood 30</button><button class="quick" data-quick="40" data-category="iFood">🍔 iFood 40</button><button class="quick" data-quick="50" data-category="iFood">🍔 iFood 50</button><button class="quick" data-quick="35" data-category="Cinema">🎬 Cinema</button></div>
+    </section>
+
+    <section class="card">
+      <div class="section-head"><div><p class="eyebrow">SEU PADRÃO DE CONSUMO</p><h2>Comida e lazer</h2></div></div>
+      <div class="grid-2"><div class="metric-box"><span>iFood no mês</span><strong id="ifoodMonth">R$ 0,00</strong><small id="ifoodCount">0 pedidos</small></div><div class="metric-box"><span>Cinema + comida fora</span><strong id="leisureMonth">R$ 0,00</strong><small id="leisureCount">0 registros</small></div></div>
+      <div class="projection" id="projectionText"></div>
+    </section>
+
+    <section class="card">
+      <div class="section-head"><div><p class="eyebrow">FATURAS</p><h2>Compromissos</h2></div></div>
+      <div class="bill"><div><strong>Banco do Brasil</strong><small>Vencimento 05/10/2026</small></div><strong id="bbCurrent">R$ 0,00</strong></div>
+      <div id="bbPlannedList" class="planned-list"></div>
+      <div class="bill"><div><strong>Renner</strong><small>Vencimento 30/09/2026</small></div><strong id="rennerCurrent">R$ 0,00</strong></div>
+    </section>
+
+    <section class="card">
+      <div class="section-head"><div><p class="eyebrow">HISTÓRICO</p><h2>Últimos movimentos</h2></div><button id="clearBtn" class="danger ghost">Limpar dados</button></div>
+      <div id="history" class="history"></div>
+    </section>
+
+    <section class="card settings-card">
+      <div class="section-head"><div><p class="eyebrow">AJUSTES</p><h2>Seu mês</h2></div></div>
+      <form id="settingsForm" class="form-grid">
+        <label>Saldo atual <input id="setCash" type="number" step="0.01" /></label><label>Meta de reserva <input id="setGoal" type="number" step="0.01" /></label><label>SENAI mínimo <input id="setSenaiMin" type="number" step="0.01" /></label><label>SENAI máximo <input id="setSenaiMax" type="number" step="0.01" /></label><label>Renner atual <input id="setRenner" type="number" step="0.01" /></label><label>BB atual <input id="setBb" type="number" step="0.01" /></label><button class="secondary full" type="submit">Atualizar valores-base</button>
+      </form>
+      <div class="backup-row"><button id="exportBtn" class="ghost">Exportar backup</button><label class="ghost file-label">Importar backup<input id="importInput" type="file" accept="application/json" hidden /></label></div>
+    </section>
+  </main>
+
+  <nav class="bottom-bar"><a href="#" class="active">Resumo</a><button id="focusAdd">+ Gasto</button><a href="#history">Histórico</a></nav>
+  <script src="app.js" defer></script>
+</body>
+</html>
