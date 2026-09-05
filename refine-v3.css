@@ -1,0 +1,36 @@
+:root { --v3-projection:#ff7a00; --v3-bb:#ffb15c; --v3-renner:#f0f0f0; }
+.material-symbols-outlined { font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24; }
+.v3-hidden { display:none !important; }
+.v3-brand-logo { width:100%; height:100%; object-fit:contain; }
+.bill-brand { background:#fff !important; padding:9px; overflow:hidden; }
+.bill-brand .v3-brand-logo { width:30px; height:30px; }
+.v3-finance-panel { display:grid; gap:15px; }
+.v3-chart-layout { display:grid; grid-template-columns:minmax(130px,180px) 1fr; gap:15px; align-items:center; }
+.v3-chart { width:100%; max-width:180px; aspect-ratio:1; border:0; border-radius:50%; padding:0; position:relative; background:conic-gradient(var(--v3-projection) 0 33%,var(--v3-bb) 33% 66%,var(--v3-renner) 66% 100%); box-shadow:inset 0 0 0 1px rgba(255,255,255,.08),0 16px 38px rgba(0,0,0,.3); }
+.v3-chart::after { content:''; position:absolute; inset:24%; border-radius:50%; background:#101010; border:1px solid #2c2c2c; }
+.v3-chart-hole { position:absolute; inset:26%; z-index:2; display:grid; place-content:center; text-align:center; gap:3px; }
+.v3-chart-hole small { font-size:.63rem; }
+.v3-chart-hole strong { font-size:clamp(.78rem,3vw,1.08rem); }
+.v3-chart-legend { display:grid; gap:7px; }
+.v3-legend { border:1px solid var(--line); background:#0e0e0e; color:var(--text); border-radius:14px; padding:9px 10px; display:grid; grid-template-columns:9px 1fr auto; align-items:center; gap:8px; text-align:left; }
+.v3-legend span { color:var(--muted); font-size:.74rem; }
+.v3-legend strong { font-size:.8rem; }
+.v3-dot { width:9px; height:9px; border-radius:50%; }
+.v3-dot.projection { background:var(--v3-projection); }.v3-dot.bb { background:var(--v3-bb); }.v3-dot.renner { background:var(--v3-renner); }
+.v3-chart-caption { line-height:1.45; }
+.quick-grid { grid-template-columns:repeat(4,minmax(0,1fr)) !important; }
+.v3-quick { padding:10px 6px !important; display:grid !important; justify-items:center; grid-template-columns:1fr !important; gap:6px !important; text-align:center !important; }
+.v3-logo-shell { width:37px; height:37px; border-radius:11px; background:#fff; padding:5px; display:grid; place-items:center; overflow:hidden; }
+.v3-quick strong { color:var(--accent-2); font-size:.76rem; }
+.nav-item > .material-symbols-outlined { font-size:1.28rem !important; line-height:1 !important; }
+.v3-filter-row { display:flex; gap:8px; overflow-x:auto; padding-top:12px; scrollbar-width:none; }.v3-filter-row::-webkit-scrollbar{display:none}
+.v3-filter-chip { border:1px solid var(--line); background:#0d0d0d; color:var(--muted); border-radius:999px; padding:8px 11px; display:inline-flex; align-items:center; gap:7px; white-space:nowrap; font-weight:760; }
+.v3-filter-chip.active { background:var(--accent-soft); border-color:#55300c; color:var(--accent-2); }
+.v3-filter-chip .material-symbols-outlined { font-size:19px; }.v3-filter-chip img { width:20px; height:20px; border-radius:5px; background:#fff; }
+.v3-text-button { border:0; background:transparent; color:var(--accent); font-weight:850; padding:7px; }
+.v3-spending-total { display:grid; gap:4px; }.v3-spending-total > span { color:var(--muted); font-size:.82rem; }.v3-spending-total > strong { color:var(--accent-2); font-size:2rem; letter-spacing:-.03em; }
+.v3-list-space { margin-top:12px; }
+.v3-modal-title { display:flex; align-items:center; gap:10px; padding-right:42px; }.v3-modal-title > img { width:34px; height:34px; border-radius:10px; background:#fff; padding:5px; }
+.detail-row { grid-template-columns:auto 1fr auto !important; align-items:center; }.v3-detail-mark { width:29px; height:29px; border-radius:8px; background:#fff; padding:5px; display:grid; place-items:center; overflow:hidden; }.v3-detail-mark img { width:100%; height:100%; object-fit:contain; }.v3-detail-mark .material-symbols-outlined { color:#111; font-size:18px; }
+@media(max-width:560px){.v3-chart-layout{grid-template-columns:130px 1fr;gap:10px}.v3-legend{padding:8px}.v3-legend span{font-size:.68rem}.v3-legend strong{font-size:.72rem}}
+@media(max-width:390px){.v3-chart-layout{grid-template-columns:112px 1fr}.v3-chart-hole strong{font-size:.7rem}.v3-legend{grid-template-columns:8px 1fr;gap:6px}.v3-legend strong{grid-column:2}.quick-grid{gap:6px !important}}
